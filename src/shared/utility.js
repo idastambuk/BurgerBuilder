@@ -1,0 +1,22 @@
+export const updateObject = (oldObject, updatedProperties) => {
+    return {
+        ...oldObject,
+        ...updatedProperties
+    }
+};
+
+export const checkValidity = (value, rules = {}) => { //the solution would also be to add an if statement to check if the rules object exists inside the method
+    let isValid = true;
+    if (rules.required) {
+        isValid = value.trim() !== '' && isValid
+    }
+
+    if (rules.minLength) {
+        isValid = value.length >= rules.minLength && isValid;
+    }
+
+    if (rules.maxLength) {
+        isValid = value.length <= rules.minLength && isValid;
+    }
+    return isValid;
+}
